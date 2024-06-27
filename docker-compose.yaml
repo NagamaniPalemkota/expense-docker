@@ -3,14 +3,18 @@ name: expense
 networks:
   default:
     name:  expense
+volumes:
+  - mysql #equivalent to docker volume create mysql
 services:
   mysql:
     image:  mysql:v1.0
     container_name: mysql #eqivalent to --name mysql in docker run
+    volume:
+      - mysql:/var/lib/mysql  #equivalent to -v volumename:path in container
   backend:
     image:  backend:v1.0
     container_name: backend #eqivalent to --name backend in docker run
-    command: sh -c "sleep 20 && node /opt/server/index.js"
+    command: sh -c "sleep 20 && node /opt/server/index.js" #since, it takes someyime to load the schema, we're waiting for few secs and then running it
     depends_on:
       - mysql
   frontend:
