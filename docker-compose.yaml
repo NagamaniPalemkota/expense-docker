@@ -10,6 +10,7 @@ services:
   backend:
     image:  backend:v1.0
     container_name: backend #eqivalent to --name backend in docker run
+    command: sh -c "sleep 20 && node /opt/server/index.js"
     depends_on:
       - mysql
   frontend:
