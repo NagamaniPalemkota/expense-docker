@@ -9,7 +9,7 @@ services:
   mysql:
     image:  mysql:v1.0
     container_name: mysql #eqivalent to --name mysql in docker run
-    volume:
+    volumes:
       - mysql:/var/lib/mysql  #equivalent to -v volumename:path in container
   backend:
     image:  backend:v1.0
