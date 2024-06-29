@@ -9,5 +9,6 @@ WORKDIR /opt/server
 COPY package.json .
 COPY *.js .
 RUN npm install
+#creating an expense user and running the container with this user access. atleat the last instruction should be related to changing to this user
 USER expense
 CMD ["node","index.js"]

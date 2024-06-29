@@ -8,20 +8,20 @@ volumes:
     # external: true #since volume was already created
 services:
   mysql:
-    image:  mysql:v1.0
+    image:  nagamanimuvva/mysql:v1.0
     container_name: mysql #eqivalent to --name mysql in docker run
     volumes:
     - source: mysql
       target: /var/lib/mysql  #equivalent to -v volumename:path in container
       type: volume #-v vol-name:path-in-container
   backend:
-    image:  backend:v1.0
+    image:  nagamanimuvva/backend:v1.0
     container_name: backend #eqivalent to --name backend in docker run
     command: sh -c "sleep 20 && node /opt/server/index.js" #since, it takes someyime to load the schema, we're waiting for few secs and then running it
     depends_on:
       - mysql
   frontend:
-    image:  frontend:v1.0
+    image:  nagamanimuvva/frontend:v1.0
     container_name: frontend
     ports:
     - "80:80"
