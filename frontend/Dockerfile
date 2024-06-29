@@ -5,3 +5,11 @@ RUN rm -rf /etc/nginx/conf.d/default.conf
 #removing the default configuration files
 COPY expense.conf /etc/nginx/nginx.conf
 COPY code /usr/share/nginx/html/
+
+RUN chown -R nginxuser:nginxuser /var/cache/nginx \
+    && chown -R nginxuser:nginxuser /var/log/nginx \
+    && chown -R nginxuser:nginxuser /etc/nginx/conf.d \
+    && touch /var/run/nginx.pid \
+    && chown -R nginxuser:nginxuser /var/run/nginx.pid
+
+USER nginxuser
